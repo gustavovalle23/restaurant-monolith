@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { OrderService } from './order.service';
+import { CreateOrderUseCase, FindAllOrdersUseCase } from './use-cases';
 import { OrderResolver } from './order.resolver';
 
 @Module({
-  providers: [OrderResolver, OrderService],
+  providers: [OrderResolver, CreateOrderUseCase, FindAllOrdersUseCase],
 })
 export class OrderModule {}
