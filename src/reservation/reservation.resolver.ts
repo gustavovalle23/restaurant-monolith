@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { ReservationService } from './reservation.service';
-import { Reservation } from './entities/reservation.entity';
+import { Reservation } from './dto/reservation';
 import { CreateReservationInput } from './dto/create-reservation.input';
 import { UpdateReservationInput } from './dto/update-reservation.input';
 
@@ -9,7 +9,10 @@ export class ReservationResolver {
   constructor(private readonly reservationService: ReservationService) {}
 
   @Mutation(() => Reservation)
-  createReservation(@Args('createReservationInput') createReservationInput: CreateReservationInput) {
+  createReservation(
+    @Args('createReservationInput')
+    createReservationInput: CreateReservationInput,
+  ) {
     return this.reservationService.create(createReservationInput);
   }
 
@@ -24,8 +27,14 @@ export class ReservationResolver {
   }
 
   @Mutation(() => Reservation)
-  updateReservation(@Args('updateReservationInput') updateReservationInput: UpdateReservationInput) {
-    return this.reservationService.update(updateReservationInput.id, updateReservationInput);
+  updateReservation(
+    @Args('updateReservationInput')
+    updateReservationInput: UpdateReservationInput,
+  ) {
+    return this.reservationService.update(
+      updateReservationInput.id,
+      updateReservationInput,
+    );
   }
 
   @Mutation(() => Reservation)

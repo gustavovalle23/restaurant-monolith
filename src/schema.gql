@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Reservation {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Recipe {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Order {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Auth {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  auth(id: Int!): Auth!
+  order(id: Int!): Order!
+  recipe(id: Int!): Recipe!
+  reservation(id: Int!): Reservation!
+}
+
+type Mutation {
+  createAuth(createAuthInput: CreateAuthInput!): Auth!
+  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
+  removeAuth(id: Int!): Auth!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  removeOrder(id: Int!): Order!
+  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
+  updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
+  removeRecipe(id: Int!): Recipe!
+  createReservation(createReservationInput: CreateReservationInput!): Reservation!
+  updateReservation(updateReservationInput: UpdateReservationInput!): Reservation!
+  removeReservation(id: Int!): Reservation!
+}
+
+input CreateAuthInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAuthInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateOrderInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateOrderInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateRecipeInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateRecipeInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateReservationInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateReservationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
