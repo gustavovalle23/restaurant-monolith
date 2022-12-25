@@ -12,7 +12,7 @@ type Recipe {
   exampleField: Int!
 }
 
-type Order {
+type OrderOutput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
@@ -24,7 +24,7 @@ type Auth {
 
 type Query {
   auth(id: Int!): Auth!
-  order(id: Int!): Order!
+  order: [OrderOutput!]!
   recipe(id: Int!): Recipe!
   reservation(id: Int!): Reservation!
 }
@@ -33,9 +33,7 @@ type Mutation {
   createAuth(createAuthInput: CreateAuthInput!): Auth!
   updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
   removeAuth(id: Int!): Auth!
-  createOrder(createOrderInput: CreateOrderInput!): Order!
-  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
-  removeOrder(id: Int!): Order!
+  createOrder(createOrderInput: CreateOrderInput!): OrderOutput!
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
   removeRecipe(id: Int!): Recipe!
@@ -58,12 +56,6 @@ input UpdateAuthInput {
 input CreateOrderInput {
   """Example field (placeholder)"""
   exampleField: Int!
-}
-
-input UpdateOrderInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
 }
 
 input CreateRecipeInput {
