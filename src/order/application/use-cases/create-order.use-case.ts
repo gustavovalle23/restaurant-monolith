@@ -1,5 +1,5 @@
-import { OrderOutput } from '../dto';
-import { OrderRepository } from '../repositories/order.repository';
+import { OrderOutput } from '../dto/order.output';
+import { OrderRepository } from '../../domain/repositories';
 
 export class CreateOrderUseCase {
   constructor(private readonly orderRepository: OrderRepository) {}

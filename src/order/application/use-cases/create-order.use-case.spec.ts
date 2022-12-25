@@ -1,5 +1,5 @@
-import { OrderOutput } from '../dto';
-import { OrderRepository } from '../repositories/order.repository';
+import { OrderOutput } from '../dto/order.output';
+import { OrderRepository } from '../../domain/repositories';
 import { CreateOrderUseCase } from './create-order.use-case';
 
 describe('CreateOrderUseCase', () => {

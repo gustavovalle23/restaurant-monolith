@@ -1,8 +1,9 @@
-import { OrderOutput } from '../dto';
-import { OrderRepository } from '../repositories/order.repository';
+import { OrderOutput } from '../../application/dto/order.output';
+import { OrderRepository } from '../../domain/repositories';
 import { OrderResolver } from './order.resolver';
-import { CreateOrderUseCase, FindAllOrdersUseCase } from '../use-cases';
-import { FindOneOrderUseCase } from '../use-cases/find-one-order.use-case';
+import { FindOneOrderUseCase } from '../../application/use-cases/find-one-order.use-case';
+import { FindAllOrdersUseCase } from '../../application/use-cases/find-all-orders.use-case';
+import { CreateOrderUseCase } from '../../application/use-cases/create-order.use-case';
 
 describe('orderResolver', () => {
   let orderResolver: OrderResolver;

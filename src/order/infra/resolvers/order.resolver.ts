@@ -1,10 +1,13 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { CreateOrderUseCase } from '..//use-cases/create-order.use-case';
-import { OrderOutput } from '../dto/order.output';
-import { CreateOrderInput } from '../dto/create-order.input';
-import { FindAllOrdersUseCase } from '../use-cases';
-import { FindOneOrderUseCase } from '../use-cases/find-one-order.use-case';
+import { FindAllOrdersUseCase } from '@/order/application/use-cases/find-all-orders.use-case';
+import { FindOneOrderUseCase } from '@/order/application/use-cases/find-one-order.use-case';
+import { CreateOrderUseCase } from '@/order/application/use-cases/create-order.use-case';
+import { OrderOutput } from '@/order/application/dto/order.output';
+import { CreateOrderInput } from '@/order/application/dto/create-order.input';
+import { Injectable } from '@nestjs/common';
+import { Scope } from '@nestjs/common';
 
+@Injectable({ scope: Scope.REQUEST })
 @Resolver(() => OrderOutput)
 export class OrderResolver {
   constructor(

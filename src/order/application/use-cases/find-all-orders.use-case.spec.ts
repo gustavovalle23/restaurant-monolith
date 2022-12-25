@@ -1,5 +1,5 @@
-import { OrderOutput } from '../dto';
-import { OrderRepository } from '../repositories/order.repository';
+import { OrderOutput } from '../dto/order.output';
+import { OrderRepository } from '../../domain/repositories';
 import { FindAllOrdersUseCase } from './find-all-orders.use-case';
 
 describe('FindAllOrdersUseCase', () => {
