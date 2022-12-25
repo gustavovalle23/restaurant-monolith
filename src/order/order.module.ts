@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CreateOrderUseCase, FindAllOrdersUseCase } from './use-cases';
-import { OrderResolver } from './order.resolver';
+import { OrderResolver } from './resolvers';
 
 @Module({
   providers: [OrderResolver, CreateOrderUseCase, FindAllOrdersUseCase],

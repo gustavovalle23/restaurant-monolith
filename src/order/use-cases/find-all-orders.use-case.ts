@@ -1,9 +1,12 @@
 import { OrderOutput } from '../dto';
+import { OrderRepository } from '../repositories/order.repository';
 
 export class FindAllOrdersUseCase {
+  constructor(private readonly orderRepository: OrderRepository) {}
+
   execute(): Output {
-    return [];
+    return this.orderRepository.findAll();
   }
 }
 
-type Output = OrderOutput[];
+type Output = Promise<OrderOutput[]>;

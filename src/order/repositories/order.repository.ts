@@ -1,4 +1,4 @@
-import { Order } from './entities/order.entity';
+import { Order } from '../entities/order.entity';
 
 export interface OrderRepository {
   create(data: CreateOrderInput): Promise<Order>;
@@ -7,4 +7,4 @@ export interface OrderRepository {
   remove(id: string): Promise<void>;
 }
 
-type CreateOrderInput = { name: string };
+type CreateOrderInput = { exampleField: number };
