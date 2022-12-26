@@ -1,7 +1,24 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Status } from '../../domain/entities/order.entity';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
+
+registerEnumType(Status, { name: 'Status' });
+
+@ObjectType()
+export class Address {
+  @Field()
+  city: string;
+}
 
 @ObjectType()
 export class OrderOutput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field({ defaultValue: Status })
+  status: Status;
+  @Field()
+  customerId: string;
+  @Field()
+  customerAddress: Address;
+
+  constructor(order: OrderOutput) {
+    Object.assign(this, order);
+  }
 }

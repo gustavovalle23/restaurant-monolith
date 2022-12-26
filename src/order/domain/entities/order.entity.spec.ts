@@ -5,7 +5,7 @@ import { Order, Status } from './order.entity';
 describe('OrderEntity', () => {
   it('should instantiate an entity', () => {
     const order = new Order({
-      customerId: new ObjectID(),
+      customerId: new ObjectID().toString(),
       customerAddress: new Address({ city: 'FakeCity' }),
     });
 

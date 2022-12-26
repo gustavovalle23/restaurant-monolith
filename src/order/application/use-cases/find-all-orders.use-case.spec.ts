@@ -1,10 +1,17 @@
 import { OrderOutput } from '../dto/order.output';
 import { OrderRepository } from '../../domain/repositories';
 import { FindAllOrdersUseCase } from './find-all-orders.use-case';
+import { Status } from '../../domain/entities/order.entity';
 
 describe('FindAllOrdersUseCase', () => {
   let findAllOrdersUseCase: FindAllOrdersUseCase;
-  const expectedResult: OrderOutput[] = [{ exampleField: 2 }];
+  const expectedResult: OrderOutput[] = [
+    {
+      status: Status.PENDENT,
+      customerId: '123',
+      customerAddress: { city: 'Ribeirão Preto' },
+    },
+  ];
 
   const MockRepository = () => {
     return {

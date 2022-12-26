@@ -1,10 +1,15 @@
 import { OrderOutput } from '../dto/order.output';
 import { OrderRepository } from '../../domain/repositories';
 import { CreateOrderUseCase } from './create-order.use-case';
+import { Status } from '../../domain/entities/order.entity';
 
 describe('CreateOrderUseCase', () => {
   let createOrderUseCase: CreateOrderUseCase;
-  const expectedResult: OrderOutput = { exampleField: 2 };
+  const expectedResult: OrderOutput = {
+    status: Status.PENDENT,
+    customerId: '123',
+    customerAddress: { city: 'Ribeirão Preto' },
+  };
 
   const MockRepository = () => {
     return {
@@ -21,7 +26,10 @@ describe('CreateOrderUseCase', () => {
   });
 
   it('should return a new order from create use case', async () => {
-    const result = await createOrderUseCase.execute({ exampleField: 2 });
+    const result = await createOrderUseCase.execute({
+      customerId: '123',
+      customerAddress: { city: 'Ribeirão Preto' },
+    });
     expect(result).toBe(expectedResult);
   });
 });

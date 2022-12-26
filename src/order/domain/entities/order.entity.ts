@@ -2,20 +2,20 @@ import { ObjectID } from 'bson';
 import { Address } from './address.ov';
 
 export enum Status {
-  SENT = 'SENT',
-  PENDENT = 'PENDENT',
+  SENT,
+  PENDENT,
 }
 
 type OrderProps = {
-  id?: ObjectID;
+  id?: string;
   status?: Status;
-  customerId: ObjectID;
+  customerId: string;
   customerAddress: Address;
 };
 
 export class Order {
   constructor(private props: OrderProps) {
-    this.id = this.props.id ?? new ObjectID();
+    this.id = this.props.id ?? new ObjectID().toString();
     this.status = this.props.status ?? Status.PENDENT;
     this.customerId = this.props.customerId;
     this.customerAddress = this.props.customerAddress;
@@ -25,7 +25,7 @@ export class Order {
     return this.props.id;
   }
 
-  private set id(value: ObjectID) {
+  private set id(value: string) {
     this.props.id = value;
   }
 
@@ -33,7 +33,7 @@ export class Order {
     return this.props.customerId;
   }
 
-  private set customerId(value: ObjectID) {
+  private set customerId(value: string) {
     this.props.customerId = value;
   }
 

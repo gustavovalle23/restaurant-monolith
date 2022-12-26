@@ -1,4 +1,4 @@
-import { Order } from '../entities/order.entity';
+import { Order, Status } from '../entities/order.entity';
 
 export interface OrderRepository {
   create(data: CreateOrderInput): Promise<Order>;
@@ -7,4 +7,10 @@ export interface OrderRepository {
   remove(id: string): Promise<void>;
 }
 
-type CreateOrderInput = { exampleField: number };
+type CreateOrderInput = {
+  status: Status;
+  customerId: string;
+  customerAddress: {
+    city: string;
+  };
+};

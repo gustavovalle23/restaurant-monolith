@@ -4,6 +4,7 @@ import { OrderResolver } from './order.resolver';
 import { FindOneOrderUseCase } from '../../application/use-cases/find-one-order.use-case';
 import { FindAllOrdersUseCase } from '../../application/use-cases/find-all-orders.use-case';
 import { CreateOrderUseCase } from '../../application/use-cases/create-order.use-case';
+import { Status } from '../../domain/entities/order.entity';
 
 describe('orderResolver', () => {
   let orderResolver: OrderResolver;
@@ -26,8 +27,16 @@ describe('orderResolver', () => {
 
   it('should return a list of all orders', async () => {
     const expectedResult: OrderOutput[] = [
-      { exampleField: 2 },
-      { exampleField: 3 },
+      {
+        status: Status.PENDENT,
+        customerId: '123',
+        customerAddress: { city: 'Ribeirão Preto' },
+      },
+      {
+        status: Status.PENDENT,
+        customerId: '123',
+        customerAddress: { city: 'Ribeirão Preto' },
+      },
     ];
     jest
       .spyOn(findAllOrdersUseCase, 'execute')
@@ -38,20 +47,29 @@ describe('orderResolver', () => {
   });
 
   it('should return a created order', async () => {
-    const expectedResult = new OrderOutput();
-    expectedResult.exampleField = 2;
+    const expectedResult = new OrderOutput({
+      status: Status.PENDENT,
+      customerId: '123',
+      customerAddress: { city: 'Ribeirão Preto' },
+    });
 
     jest
       .spyOn(createOrderUseCase, 'execute')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
-    const resolverResult = await orderResolver.createOrder({ exampleField: 2 });
+    const resolverResult = await orderResolver.createOrder({
+      customerAddress: { city: 'Ribeirão Preto' },
+      customerId: '123',
+    });
     expect(resolverResult).toBe(expectedResult);
   });
 
   it('should return a found order', async () => {
-    const expectedResult = new OrderOutput();
-    expectedResult.exampleField = 2;
+    const expectedResult = {
+      customerAddress: { city: 'Ribeirão Preto' },
+      customerId: '123',
+      status: Status.PENDENT,
+    };
 
     jest
       .spyOn(findOneOrderUseCase, 'execute')
