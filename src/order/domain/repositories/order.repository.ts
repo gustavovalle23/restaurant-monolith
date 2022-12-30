@@ -7,7 +7,7 @@ export interface OrderRepository {
   remove(id: string): Promise<void>;
 }
 
-type CreateOrderInput = {
+export type CreateOrderInput = {
   status: Status;
   customerId: string;
   customerAddress: {
