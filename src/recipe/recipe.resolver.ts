@@ -1,15 +1,17 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { RecipeService } from './recipe.service';
-import { Recipe } from './entities/recipe.entity';
 import { CreateRecipeInput } from './dto/create-recipe.input';
 import { UpdateRecipeInput } from './dto/update-recipe.input';
+import { Recipe } from './entities/recipe.entity';
+import { RecipeService } from './recipe.service';
 
 @Resolver(() => Recipe)
 export class RecipeResolver {
   constructor(private readonly recipeService: RecipeService) {}
 
   @Mutation(() => Recipe)
-  createRecipe(@Args('createRecipeInput') createRecipeInput: CreateRecipeInput) {
+  createRecipe(
+    @Args('createRecipeInput') createRecipeInput: CreateRecipeInput,
+  ) {
     return this.recipeService.create(createRecipeInput);
   }
 
@@ -24,7 +26,9 @@ export class RecipeResolver {
   }
 
   @Mutation(() => Recipe)
-  updateRecipe(@Args('updateRecipeInput') updateRecipeInput: UpdateRecipeInput) {
+  updateRecipe(
+    @Args('updateRecipeInput') updateRecipeInput: UpdateRecipeInput,
+  ) {
     return this.recipeService.update(updateRecipeInput.id, updateRecipeInput);
   }
 

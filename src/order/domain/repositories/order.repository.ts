@@ -1,4 +1,4 @@
-import { Order, Status } from '../entities/order.entity';
+import { Order, Status } from '@/order/domain/entities';
 
 export abstract class IOrderRepository {
   abstract create(data: CreateOrderInput): Promise<Order>;

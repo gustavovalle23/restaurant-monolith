@@ -1,7 +1,7 @@
-import { OrderOutput } from '../dto/order.output';
-import { IOrderRepository } from '../../domain/repositories';
+import { Status } from '@/order/domain/entities';
+import { IOrderRepository } from '@/order/domain/repositories';
 import { Injectable } from '@nestjs/common';
-import { Status } from '../../domain/entities/order.entity';
+import { OrderOutput } from '@/order/application/dto';
 
 @Injectable()
 export class CreateOrderUseCase {

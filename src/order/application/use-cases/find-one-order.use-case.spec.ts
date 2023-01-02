@@ -1,7 +1,7 @@
-import { OrderOutput } from '../dto/order.output';
-import { IOrderRepository } from '../../domain/repositories';
 import { FindOneOrderUseCase } from './find-one-order.use-case';
-import { Status } from '../../domain/entities/order.entity';
+import { Status } from '@/order/domain/entities';
+import { OrderOutput } from '@/order/application/dto';
+import { IOrderRepository } from '@/order/domain/repositories';
 
 describe('FindOneOrderUseCase', () => {
   let findOneOrderUseCase: FindOneOrderUseCase;

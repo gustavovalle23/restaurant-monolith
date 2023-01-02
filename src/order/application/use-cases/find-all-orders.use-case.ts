@@ -1,6 +1,6 @@
-import { OrderOutput } from '../dto/order.output';
-import { IOrderRepository } from '../../domain/repositories';
 import { Injectable } from '@nestjs/common';
+import { OrderOutput } from '@/order/application/dto';
+import { IOrderRepository } from '@/order/domain/repositories';
 
 @Injectable()
 export class FindAllOrdersUseCase {

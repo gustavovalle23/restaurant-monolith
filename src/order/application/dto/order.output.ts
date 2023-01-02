@@ -1,4 +1,4 @@
-import { Status } from '../../domain/entities/order.entity';
+import { Status } from '@/order/domain/entities';
 import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 
 registerEnumType(Status, { name: 'Status' });

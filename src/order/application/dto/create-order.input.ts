@@ -1,5 +1,5 @@
+import { Status } from '@/order/domain/entities';
 import { InputType, Field } from '@nestjs/graphql';
-import { Status } from '../../domain/entities/order.entity';
 
 @InputType()
 export class AddressInput {

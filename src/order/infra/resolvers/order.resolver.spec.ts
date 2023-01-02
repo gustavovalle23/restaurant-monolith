@@ -1,10 +1,12 @@
-import { OrderOutput } from '../../application/dto/order.output';
-import { IOrderRepository } from '../../domain/repositories';
+import { OrderOutput } from '@/order/application/dto';
+import {
+  CreateOrderUseCase,
+  FindAllOrdersUseCase,
+  FindOneOrderUseCase,
+} from '@/order/application/use-cases';
+import { Status } from '@/order/domain/entities';
+import { IOrderRepository } from '@/order/domain/repositories';
 import { OrderResolver } from './order.resolver';
-import { FindOneOrderUseCase } from '../../application/use-cases/find-one-order.use-case';
-import { FindAllOrdersUseCase } from '../../application/use-cases/find-all-orders.use-case';
-import { CreateOrderUseCase } from '../../application/use-cases/create-order.use-case';
-import { Status } from '../../domain/entities/order.entity';
 
 describe('orderResolver', () => {
   let orderResolver: OrderResolver;
