@@ -26,6 +26,20 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+
+## Patterns and Concepts used
+- [x] Unit Test;
+- [ ] Integration Test;
+- [x] Domain Driven Design;
+- [x] Clean Architecture;
+- [ ] Notification Pattern;
+- [ ] Event Sourcing;
+- [ ] Docker;
+- [ ] Docker Compose;
+- [ ] Kubernetes;
+- [ ] Mongodb Clustering;
+
+
 ## Installation
 
 ```bash
