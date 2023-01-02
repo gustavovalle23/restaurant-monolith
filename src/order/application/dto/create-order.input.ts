@@ -9,10 +9,12 @@ export class AddressInput {
 
 @InputType()
 export class CreateOrderInput {
-  @Field({ defaultValue: Status, nullable: true })
+  @Field({ defaultValue: Status.PENDENT, nullable: true })
   status?: Status;
+
   @Field()
   customerId: string;
+
   @Field()
   customerAddress: AddressInput;
 }

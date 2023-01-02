@@ -2,8 +2,8 @@ import { ObjectID } from 'bson';
 import { Address } from './address.ov';
 
 export enum Status {
-  SENT,
-  PENDENT,
+  SENT = 'SENT',
+  PENDENT = 'PENDENT',
 }
 
 type OrderProps = {

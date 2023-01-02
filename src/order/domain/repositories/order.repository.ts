@@ -1,10 +1,10 @@
 import { Order, Status } from '../entities/order.entity';
 
-export interface OrderRepository {
-  create(data: CreateOrderInput): Promise<Order>;
-  findOneById(id: string): Promise<Order>;
-  findAll(): Promise<Order[]>;
-  remove(id: string): Promise<void>;
+export abstract class IOrderRepository {
+  abstract create(data: CreateOrderInput): Promise<Order>;
+  abstract findOneById(id: string): Promise<Order>;
+  abstract findAll(): Promise<Order[]>;
+  abstract remove(id: string): Promise<void>;
 }
 
 export type CreateOrderInput = {

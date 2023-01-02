@@ -1,10 +1,12 @@
 import { Order } from '@/order/domain/entities/order.entity';
+import { Injectable } from '@nestjs/common';
 import {
-  OrderRepository as IRepository,
+  IOrderRepository,
   CreateOrderInput,
 } from '../../domain/repositories/order.repository';
 
-export class OrderRepository implements IRepository {
+@Injectable()
+export class OrderRepository implements IOrderRepository {
   create({
     customerAddress,
     customerId,

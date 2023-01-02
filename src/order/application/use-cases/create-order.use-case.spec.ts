@@ -1,5 +1,5 @@
 import { OrderOutput } from '../dto/order.output';
-import { OrderRepository } from '../../domain/repositories';
+import { IOrderRepository } from '../../domain/repositories';
 import { CreateOrderUseCase } from './create-order.use-case';
 import { Status } from '../../domain/entities/order.entity';
 
@@ -21,7 +21,7 @@ describe('CreateOrderUseCase', () => {
   };
 
   beforeEach(() => {
-    const orderRepository: OrderRepository = MockRepository();
+    const orderRepository: IOrderRepository = MockRepository();
     createOrderUseCase = new CreateOrderUseCase(orderRepository);
   });
 

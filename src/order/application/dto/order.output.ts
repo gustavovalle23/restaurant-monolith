@@ -11,10 +11,12 @@ export class Address {
 
 @ObjectType()
 export class OrderOutput {
-  @Field({ defaultValue: Status })
+  @Field()
   status: Status;
+
   @Field()
   customerId: string;
+
   @Field()
   customerAddress: Address;
 

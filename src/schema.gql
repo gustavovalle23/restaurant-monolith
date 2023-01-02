@@ -12,9 +12,14 @@ type Recipe {
   exampleField: Int!
 }
 
+type Address {
+  city: String!
+}
+
 type OrderOutput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  status: String!
+  customerId: String!
+  customerAddress: Address!
 }
 
 type Auth {
@@ -24,7 +29,7 @@ type Auth {
 
 type Query {
   auth(id: Int!): Auth!
-  order: [OrderOutput!]!
+  order(id: String!): OrderOutput!
   recipe(id: Int!): Recipe!
   reservation(id: Int!): Reservation!
 }
@@ -54,8 +59,13 @@ input UpdateAuthInput {
 }
 
 input CreateOrderInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  status: String = "PENDENT"
+  customerId: String!
+  customerAddress: AddressInput!
+}
+
+input AddressInput {
+  city: String!
 }
 
 input CreateRecipeInput {
