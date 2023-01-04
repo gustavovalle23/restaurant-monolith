@@ -60,7 +60,12 @@ describe('orderResolver', () => {
       .mockImplementation(() => Promise.resolve(expectedResult));
 
     const resolverResult = await orderResolver.createOrder({
-      customerAddress: { city: 'Ribeirão Preto' },
+      customerAddress: {
+        city: 'Fake City',
+        street: 'Fake Street',
+        state: 'Fake State',
+        zipCode: 'Fake Zip Code',
+      },
       customerId: '123',
     });
     expect(resolverResult).toBe(expectedResult);

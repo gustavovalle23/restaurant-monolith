@@ -28,7 +28,12 @@ describe('CreateOrderUseCase', () => {
   it('should return a new order from create use case', async () => {
     const result = await createOrderUseCase.execute({
       customerId: '123',
-      customerAddress: { city: 'Ribeirão Preto' },
+      customerAddress: {
+        city: 'Fake City',
+        state: 'Fake State',
+        street: 'Fake Street',
+        zipCode: 'Fake Zip Code',
+      },
     });
     expect(result).toBe(expectedResult);
   });

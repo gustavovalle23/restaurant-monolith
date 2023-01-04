@@ -6,11 +6,12 @@ import {
 } from '@/order/domain/repositories';
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
+import { ORDER_MODEL } from '@/database/schemas/order.providers';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
   constructor(
-    @Inject('ORDER_MODEL')
+    @Inject(ORDER_MODEL)
     private orderModel: Model<OrderInterface>,
   ) {}
 

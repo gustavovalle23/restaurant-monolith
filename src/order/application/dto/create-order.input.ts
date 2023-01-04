@@ -5,6 +5,15 @@ import { InputType, Field } from '@nestjs/graphql';
 export class AddressInput {
   @Field()
   city: string;
+
+  @Field()
+  street: string;
+
+  @Field()
+  state: string;
+
+  @Field()
+  zipCode: string;
 }
 
 @InputType()

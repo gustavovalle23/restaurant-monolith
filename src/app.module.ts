@@ -7,6 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -17,6 +18,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
+
+    MongooseModule.forRoot('mongodb://localhost/nest'),
     ReservationModule,
     RecipeModule,
     OrderModule,

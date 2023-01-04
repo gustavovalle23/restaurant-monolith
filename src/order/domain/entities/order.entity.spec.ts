@@ -6,12 +6,22 @@ describe('OrderEntity', () => {
   it('should instantiate an entity', () => {
     const order = new Order({
       customerId: new ObjectID().toString(),
-      customerAddress: new Address({ city: 'FakeCity' }),
+      customerAddress: new Address({
+        city: 'FakeCity',
+        state: 'FakeState',
+        street: 'FakeStreet',
+        zipCode: '00000000',
+      }),
     });
 
     expect(order.id).toBeDefined();
     expect(order.customerId).toBeDefined();
-    expect(order.customerAddress).toMatchObject({ city: 'FakeCity' });
+    expect(order.customerAddress).toMatchObject({
+      city: 'FakeCity',
+      state: 'FakeState',
+      street: 'FakeStreet',
+      zipCode: '00000000',
+    });
     expect(order.status).toEqual(Status.PENDENT);
   });
 });

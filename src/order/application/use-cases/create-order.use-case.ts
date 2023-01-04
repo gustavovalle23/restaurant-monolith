@@ -17,6 +17,9 @@ type Input = {
   customerId: string;
   customerAddress: {
     city: string;
+    street: string;
+    state: string;
+    zipCode: string;
   };
 };
 type Output = Promise<OrderOutput>;
