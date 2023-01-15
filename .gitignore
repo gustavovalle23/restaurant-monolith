@@ -1,6 +1,7 @@
 # compiled output
 nestjs/dist
 nestjs/node_modules
+nestjs/coverage
 
 nestjs/logs
 nestjs/*.log
