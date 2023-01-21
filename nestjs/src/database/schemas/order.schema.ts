@@ -19,6 +19,7 @@ export class Address {
   zipCode: string;
 }
 
+@Schema()
 export class Order {
   @Prop()
   status: Status;
