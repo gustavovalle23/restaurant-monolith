@@ -1,7 +1,7 @@
 import { Status } from '@/order/domain/entities';
 import { OrderOutput } from '@/order/application/dto';
-import { FindAllOrdersUseCase } from './find-all-orders.use-case';
 import { IOrderRepository } from '@/order/domain/repositories';
+import { FindAllOrdersUseCase } from '@/order/application/use-cases';
 
 describe('FindAllOrdersUseCase', () => {
   let findAllOrdersUseCase: FindAllOrdersUseCase;

@@ -1,17 +1,17 @@
-import { CreateOrderUseCase } from './create-order.use-case';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { Status } from '@/order/domain/entities';
 import { OrderOutput } from '@/order/application/dto';
+import { CreateOrderUseCase } from '@/order/application/use-cases';
 
 describe('CreateOrderUseCase', () => {
   let createOrderUseCase: CreateOrderUseCase;
-  const expectedResult: OrderOutput = {
+  const expectedResult = {
     status: Status.PENDENT,
     customerId: '123',
     customerAddress: { city: 'Ribeirão Preto' },
   };
 
-  const MockRepository = () => {
+  const mockRepository = () => {
     return {
       create: jest.fn().mockReturnValue(expectedResult),
       findOneById: jest.fn(),
@@ -21,7 +21,7 @@ describe('CreateOrderUseCase', () => {
   };
 
   beforeEach(() => {
-    const orderRepository: IOrderRepository = MockRepository();
+    const orderRepository: IOrderRepository = mockRepository();
     createOrderUseCase = new CreateOrderUseCase(orderRepository);
   });
 

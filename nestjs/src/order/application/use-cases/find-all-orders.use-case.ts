@@ -6,9 +6,9 @@ import { IOrderRepository } from '@/order/domain/repositories';
 export class FindAllOrdersUseCase {
   constructor(private readonly orderRepository: IOrderRepository) {}
 
-  execute(): Output {
+  async execute(): Promise<Output> {
     return this.orderRepository.findAll();
   }
 }
 
-type Output = Promise<OrderOutput[]>;
+type Output = OrderOutput[];

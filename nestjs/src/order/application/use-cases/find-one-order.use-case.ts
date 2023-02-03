@@ -6,10 +6,10 @@ import { OrderOutput } from '@/order/application/dto';
 export class FindOneOrderUseCase {
   constructor(private readonly orderRepository: IOrderRepository) {}
 
-  execute({ orderId }: Input): Output {
+  async execute({ orderId }: Input): Promise<Output> {
     return this.orderRepository.findOneById(orderId);
   }
 }
 
 type Input = { orderId: string };
-type Output = Promise<OrderOutput>;
+type Output = OrderOutput;

@@ -7,7 +7,7 @@ import { OrderOutput } from '@/order/application/dto';
 export class CreateOrderUseCase {
   constructor(private readonly orderRepository: IOrderRepository) {}
 
-  execute({ status, customerAddress, customerId }: Input): Output {
+  async execute({ status, customerAddress, customerId }: Input): Promise<Output> {
     return this.orderRepository.create({ status, customerAddress, customerId });
   }
 }
@@ -22,4 +22,4 @@ type Input = {
     zipCode: string;
   };
 };
-type Output = Promise<OrderOutput>;
+type Output = OrderOutput;
