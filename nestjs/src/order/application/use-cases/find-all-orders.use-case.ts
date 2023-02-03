@@ -1,14 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { OrderOutput } from '@/order/application/dto';
 import { IOrderRepository } from '@/order/domain/repositories';
+import { Status } from '@/order/domain/entities';
 
 @Injectable()
 export class FindAllOrdersUseCase {
-  constructor(private readonly orderRepository: IOrderRepository) {}
+  constructor(private readonly orderRepository: IOrderRepository) { }
 
   async execute(): Promise<Output> {
     return this.orderRepository.findAll();
   }
 }
 
-type Output = OrderOutput[];
+type Output = {
+  status: Status;
+  customerId: string;
+  customerAddress: {
+    city: string;
+    street: string;
+    state: string;
+    zipCode: string;
+  }
+}[];

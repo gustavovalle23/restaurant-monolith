@@ -1,6 +1,5 @@
 import { IOrderRepository } from '@/order/domain/repositories';
 import { Status } from '@/order/domain/entities';
-import { OrderOutput } from '@/order/application/dto';
 import { CreateOrderUseCase } from '@/order/application/use-cases';
 
 describe('CreateOrderUseCase', () => {

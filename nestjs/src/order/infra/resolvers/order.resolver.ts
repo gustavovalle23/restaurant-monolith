@@ -5,7 +5,7 @@ import {
   FindAllOrdersUseCase,
   FindOneOrderUseCase,
 } from '@/order/application/use-cases';
-import { CreateOrderInput, OrderOutput } from '@/order/application/dto';
+import { CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
 
 @Injectable({ scope: Scope.REQUEST })
 @Resolver(() => OrderOutput)

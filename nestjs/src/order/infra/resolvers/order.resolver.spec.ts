@@ -1,4 +1,4 @@
-import { OrderOutput } from '@/order/application/dto';
+import { OrderOutput } from '@/order/infra/resolvers/dto';
 import {
   CreateOrderUseCase,
   FindAllOrdersUseCase,
@@ -28,7 +28,7 @@ describe('orderResolver', () => {
   });
 
   it('should return a list of all orders', async () => {
-    const expectedResult: OrderOutput[] = [
+    const expectedResult = [
       {
         status: Status.PENDENT,
         customerId: '123',

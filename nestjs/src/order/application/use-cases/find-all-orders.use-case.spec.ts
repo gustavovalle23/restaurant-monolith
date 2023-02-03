@@ -1,11 +1,10 @@
 import { Status } from '@/order/domain/entities';
-import { OrderOutput } from '@/order/application/dto';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { FindAllOrdersUseCase } from '@/order/application/use-cases';
 
 describe('FindAllOrdersUseCase', () => {
   let findAllOrdersUseCase: FindAllOrdersUseCase;
-  const expectedResult: OrderOutput[] = [
+  const expectedResult = [
     {
       status: Status.PENDENT,
       customerId: '123',
