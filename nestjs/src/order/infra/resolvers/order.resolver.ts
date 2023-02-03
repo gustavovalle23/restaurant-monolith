@@ -4,7 +4,7 @@ import {
   CreateOrderUseCase,
   FindAllOrdersUseCase,
   FindOneOrderUseCase,
-} from '@/order/application/use-cases';
+} from '@/order/use-cases';
 import { CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
 
 @Injectable({ scope: Scope.REQUEST })

@@ -1,6 +1,6 @@
 import { IOrderRepository } from '@/order/domain/repositories';
 import { Status } from '@/order/domain/entities';
-import { CreateOrderUseCase } from '@/order/application/use-cases';
+import { CreateOrderUseCase } from '@/order/use-cases';
 
 describe('CreateOrderUseCase', () => {
   let createOrderUseCase: CreateOrderUseCase;

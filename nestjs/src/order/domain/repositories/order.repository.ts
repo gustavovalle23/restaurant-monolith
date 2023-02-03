@@ -1,10 +1,12 @@
+import { Repository } from '@/@seedwork/domain';
 import { Order, Status } from '@/order/domain/entities';
+import { ObjectID } from 'bson';
 
-export abstract class IOrderRepository {
+export abstract class IOrderRepository implements Repository<Order, ObjectID> {
   abstract create(data: CreateOrderInput): Promise<Order>;
-  abstract findOneById(id: string): Promise<Order>;
+  abstract findById(id: ObjectID): Promise<Order>;
   abstract findAll(): Promise<Order[]>;
-  abstract remove(id: string): Promise<void>;
+  abstract remove(id: ObjectID): Promise<void>;
 }
 
 export type CreateOrderInput = {

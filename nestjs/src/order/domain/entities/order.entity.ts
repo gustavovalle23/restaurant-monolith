@@ -8,7 +8,7 @@ export enum Status {
 
 type OrderProps = {
   id?: string;
-  status?: Status;
+  status: Status;
   customerId: string;
   customerAddress: Address;
 };
@@ -16,7 +16,7 @@ type OrderProps = {
 export class Order {
   constructor(private props: OrderProps) {
     this.id = this.props.id ?? new ObjectID().toString();
-    this.status = this.props.status ?? Status.PENDENT;
+    this.status = this.props.status;
     this.customerId = this.props.customerId;
     this.customerAddress = this.props.customerAddress;
   }

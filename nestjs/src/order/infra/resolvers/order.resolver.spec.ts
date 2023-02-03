@@ -3,7 +3,7 @@ import {
   CreateOrderUseCase,
   FindAllOrdersUseCase,
   FindOneOrderUseCase,
-} from '@/order/application/use-cases';
+} from '@/order/use-cases';
 import { Status } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { OrderResolver } from './order.resolver';
