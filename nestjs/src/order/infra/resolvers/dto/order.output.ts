@@ -7,6 +7,15 @@ registerEnumType(Status, { name: 'Status' });
 export class Address {
   @Field()
   city: string;
+
+  @Field()
+  street: string;
+
+  @Field()
+  state: string;
+
+  @Field()
+  zipCode: string;
 }
 
 @ObjectType()

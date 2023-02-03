@@ -3,5 +3,4 @@ export interface Repository<Entity, Identifier> {
     findById(id: Identifier): Entity | Promise<Entity>
     findAll(): Entity[] | Promise<Entity[]>
     remove(id: Identifier): Promise<void>;
-
 }

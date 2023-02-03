@@ -13,7 +13,7 @@ describe('CreateOrderUseCase', () => {
   const mockRepository = () => {
     return {
       create: jest.fn().mockReturnValue(expectedResult),
-      findOneById: jest.fn(),
+      findById: jest.fn(),
       findAll: jest.fn(),
       remove: jest.fn(),
     };

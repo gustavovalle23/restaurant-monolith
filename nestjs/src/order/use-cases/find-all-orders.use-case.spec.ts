@@ -15,7 +15,7 @@ describe('FindAllOrdersUseCase', () => {
   const MockRepository = () => {
     return {
       create: jest.fn(),
-      findOneById: jest.fn(),
+      findById: jest.fn(),
       findAll: jest.fn().mockResolvedValueOnce(expectedResult),
       remove: jest.fn(),
     };

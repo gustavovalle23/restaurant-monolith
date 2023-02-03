@@ -32,12 +32,22 @@ describe('orderResolver', () => {
       {
         status: Status.PENDENT,
         customerId: '123',
-        customerAddress: { city: 'Ribeirão Preto' },
+        customerAddress: {
+          city: 'Ribeirão Preto',
+          street: 'Random Street',
+          state: 'Random State',
+          zipCode: '11111111',
+        },
       },
       {
         status: Status.PENDENT,
         customerId: '123',
-        customerAddress: { city: 'Ribeirão Preto' },
+        customerAddress: {
+          city: 'Ribeirão Preto',
+          street: 'Random Street',
+          state: 'Random State',
+          zipCode: '11111111',
+        },
       },
     ];
     jest
@@ -52,7 +62,12 @@ describe('orderResolver', () => {
     const expectedResult = new OrderOutput({
       status: Status.PENDENT,
       customerId: '123',
-      customerAddress: { city: 'Ribeirão Preto' },
+      customerAddress: {
+        city: 'Ribeirão Preto',
+        street: 'Random Street',
+        state: 'Random State',
+        zipCode: '11111111',
+      },
     });
 
     jest
@@ -73,9 +88,14 @@ describe('orderResolver', () => {
 
   it('should return a found order', async () => {
     const expectedResult = {
-      customerAddress: { city: 'Ribeirão Preto' },
       customerId: '123',
       status: Status.PENDENT,
+      customerAddress: {
+        city: 'Ribeirão Preto',
+        street: 'Random Street',
+        state: 'Random State',
+        zipCode: '11111111',
+      },
     };
 
     jest

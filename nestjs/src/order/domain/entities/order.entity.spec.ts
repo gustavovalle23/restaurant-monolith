@@ -6,6 +6,7 @@ describe('OrderEntity', () => {
   it('should instantiate an entity', () => {
     const order = new Order({
       customerId: new ObjectID().toString(),
+      status: Status.PENDENT,
       customerAddress: new Address({
         city: 'FakeCity',
         state: 'FakeState',

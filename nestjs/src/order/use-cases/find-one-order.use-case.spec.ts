@@ -13,7 +13,7 @@ describe('FindOneOrderUseCase', () => {
   const MockRepository = () => {
     return {
       create: jest.fn(),
-      findOneById: jest.fn().mockResolvedValueOnce(expectedResult),
+      findById: jest.fn().mockResolvedValueOnce(expectedResult),
       findAll: jest.fn(),
       remove: jest.fn(),
     };
@@ -25,7 +25,7 @@ describe('FindOneOrderUseCase', () => {
   });
 
   it('should return an order from find by id use case', async () => {
-    const result = await findOneOrderUseCase.execute({ orderId: '123' });
+    const result = await findOneOrderUseCase.execute({ orderId: '111111111111111111111111' });
     expect(result).toBe(expectedResult);
   });
 });

@@ -6,6 +6,7 @@ import {
 } from '@/order/domain/repositories';
 import { Inject, Injectable } from '@nestjs/common';
 import { Document, Model, Types } from 'mongoose';
+import { ObjectID } from 'bson';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
@@ -28,7 +29,7 @@ export class OrderRepository implements IOrderRepository {
     return this.toOrderEntity(createdOrder);
   }
 
-  findOneById(id: string): Promise<Order> {
+  findById(id: ObjectID): Promise<Order> {
     throw new Error('Method not implemented.');
   }
 
@@ -36,7 +37,7 @@ export class OrderRepository implements IOrderRepository {
     throw new Error('Method not implemented.');
   }
 
-  remove(id: string): Promise<void> {
+  remove(id: ObjectID): Promise<void> {
     throw new Error('Method not implemented.');
   }
 
