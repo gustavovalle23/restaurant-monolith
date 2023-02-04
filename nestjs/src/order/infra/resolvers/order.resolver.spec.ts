@@ -3,6 +3,7 @@ import {
   CreateOrderUseCase,
   FindAllOrdersUseCase,
   FindOneOrderUseCase,
+  FindOrdersByStatusUseCase,
 } from '@/order/use-cases';
 import { Status } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
@@ -13,17 +14,20 @@ describe('orderResolver', () => {
   let createOrderUseCase: CreateOrderUseCase;
   let findAllOrdersUseCase: FindAllOrdersUseCase;
   let findOneOrderUseCase: FindOneOrderUseCase;
+  let findOrdersByStatusUseCase: FindOrdersByStatusUseCase;
   let repository: IOrderRepository;
 
   beforeEach(async () => {
     createOrderUseCase = new CreateOrderUseCase(repository);
     findAllOrdersUseCase = new FindAllOrdersUseCase(repository);
     findOneOrderUseCase = new FindOneOrderUseCase(repository);
+    findOrdersByStatusUseCase = new FindOrdersByStatusUseCase(repository);
 
     orderResolver = new OrderResolver(
       createOrderUseCase,
       findAllOrdersUseCase,
       findOneOrderUseCase,
+      findOrdersByStatusUseCase,
     );
   });
 

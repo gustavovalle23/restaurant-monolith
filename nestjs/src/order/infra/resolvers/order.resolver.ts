@@ -4,9 +4,10 @@ import {
   CreateOrderUseCase,
   FindAllOrdersUseCase,
   FindOneOrderUseCase,
+  FindOrdersByStatusUseCase,
 } from '@/order/use-cases';
-import { CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
-import { FindAllInput } from './dto/find-order.input';
+import { FindAllInput, CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
+import { Status } from '@/order/domain/entities';
 
 @Injectable({ scope: Scope.REQUEST })
 @Resolver(() => OrderOutput)
@@ -15,6 +16,7 @@ export class OrderResolver {
     private readonly createUseCase: CreateOrderUseCase,
     private readonly findAllUseCase: FindAllOrdersUseCase,
     private readonly findOneUseCase: FindOneOrderUseCase,
+    private readonly findOrdersByStatusUseCase: FindOrdersByStatusUseCase,
   ) { }
 
   @Mutation(() => OrderOutput)
@@ -24,7 +26,7 @@ export class OrderResolver {
     return this.createUseCase.execute(createOrderInput);
   }
 
-  @Query(() => [OrderOutput], { name: 'order' })
+  @Query(() => [OrderOutput], { name: 'orders' })
   findAll({ skip, limit }: FindAllInput): Promise<OrderOutput[]> {
     return this.findAllUseCase.execute({ skip, limit });
   }
@@ -34,6 +36,13 @@ export class OrderResolver {
     @Args('id', { type: () => String }) id: string,
   ): Promise<OrderOutput> {
     return this.findOneUseCase.execute({ orderId: id });
+  }
+
+  @Query(() => [OrderOutput], { name: 'orders' })
+  findByStatus(
+    @Args('status', { type: () => Status }) status: Status,
+  ): Promise<OrderOutput[]> {
+    return this.findOrdersByStatusUseCase.execute({ status });
   }
 
   //   @Mutation(() => OrderOutput)

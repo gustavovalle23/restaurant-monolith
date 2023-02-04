@@ -16,6 +16,7 @@ describe('CreateOrderUseCase', () => {
     return {
       create: jest.fn().mockReturnValue(expectedResult),
       findById: jest.fn(),
+      findByStatus: jest.fn(),
       findAll: jest.fn(),
       remove: jest.fn(),
     };
