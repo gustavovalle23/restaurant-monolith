@@ -1,4 +1,4 @@
-import { Status } from '@/order/domain/entities';
+import { Address, Order, Status } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { Injectable } from '@nestjs/common';
 
@@ -6,9 +6,22 @@ import { Injectable } from '@nestjs/common';
 export class CreateOrderUseCase {
   constructor(private readonly orderRepository: IOrderRepository) { }
 
-  async execute({ status, customerAddress, customerId }: Input): Promise<Output> {
-    return this.orderRepository.create({ status, customerAddress, customerId });
+  async execute(input: Input): Promise<Output> {
+    const order = this.entityFromInput(input)
+    return this.orderRepository.create(order)
   }
+
+  private entityFromInput({ customerAddress, customerId, status }: Input): Order {
+    const address = new Address({
+      city: customerAddress.city,
+      state: customerAddress.state,
+      street: customerAddress.street,
+      zipCode: customerAddress.zipCode
+    })
+
+    return new Order({ customerId, status, customerAddress: address })
+  }
+
 }
 
 type Input = {

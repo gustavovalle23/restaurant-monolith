@@ -7,7 +7,12 @@ describe('FindOneOrderUseCase', () => {
   const expectedResult = {
     status: Status.PENDENT,
     customerId: '123',
-    customerAddress: { city: 'Ribeirão Preto' },
+    customerAddress: {
+      city: 'Fake City',
+      state: 'Fake State',
+      street: 'Fake Street',
+      zipCode: 'Fake Zip Code',
+    },
   };
 
   const MockRepository = () => {
@@ -25,7 +30,14 @@ describe('FindOneOrderUseCase', () => {
   });
 
   it('should return an order from find by id use case', async () => {
-    const result = await findOneOrderUseCase.execute({ orderId: '111111111111111111111111' });
-    expect(result).toBe(expectedResult);
+    const output = await findOneOrderUseCase.execute({ orderId: '111111111111111111111111' });
+    expect(output.customerAddress).toBeDefined()
+    expect(output.customerAddress.city).toBeDefined()
+    expect(output.customerAddress.state).toBeDefined()
+    expect(output.customerAddress.street).toBeDefined()
+    expect(output.customerAddress.zipCode).toBeDefined()
+    expect(output.customerId).toBeDefined()
+    expect(output.status).toBeDefined()
+    expect(output).toStrictEqual(expectedResult)
   });
 });
