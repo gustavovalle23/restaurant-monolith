@@ -11,7 +11,7 @@ export class CreateOrderUseCase {
     return this.orderRepository.create(order)
   }
 
-  private entityFromInput({ customerAddress, customerId, status }: Input): Order {
+  private entityFromInput({ customerAddress, customerId }: Input): Order {
     const address = new Address({
       city: customerAddress.city,
       state: customerAddress.state,
@@ -19,13 +19,12 @@ export class CreateOrderUseCase {
       zipCode: customerAddress.zipCode
     })
 
-    return new Order({ customerId, status, customerAddress: address })
+    return new Order({ customerId, status: Status.PENDENT, customerAddress: address })
   }
 
 }
 
 type Input = {
-  status?: Status;
   customerId: string;
   customerAddress: {
     city: string;

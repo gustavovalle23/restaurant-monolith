@@ -4,6 +4,8 @@ import { CreateOrderUseCase } from '@/order/use-cases';
 
 describe('CreateOrderUseCase', () => {
   let createOrderUseCase: CreateOrderUseCase;
+  let orderRepository: IOrderRepository;
+
   const expectedResult = {
     status: Status.PENDENT,
     customerId: '123',
@@ -20,7 +22,7 @@ describe('CreateOrderUseCase', () => {
   };
 
   beforeEach(() => {
-    const orderRepository: IOrderRepository = mockRepository();
+    orderRepository = mockRepository();
     createOrderUseCase = new CreateOrderUseCase(orderRepository);
   });
 
@@ -34,6 +36,25 @@ describe('CreateOrderUseCase', () => {
         zipCode: 'Fake Zip Code',
       },
     });
+
+    const spy = jest.spyOn(orderRepository, 'create')
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith({
+      props: {
+        id: expect.any(String),
+        customerId: '123',
+        status: Status.PENDENT,
+        customerAddress: {
+          props: {
+            city: 'Fake City',
+            state: 'Fake State',
+            street: 'Fake Street',
+            zipCode: 'Fake Zip Code'
+          }
+        }
+      }
+    })
+
     expect(result).toBe(expectedResult);
   });
 });

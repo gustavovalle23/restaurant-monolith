@@ -7,5 +7,4 @@ export class FindAllInput {
 
   @Field()
   limit: number;
-
 }
