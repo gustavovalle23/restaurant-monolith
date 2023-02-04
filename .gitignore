@@ -1,34 +1,34 @@
 # compiled output
-nestjs/dist
-nestjs/node_modules
-nestjs/coverage
+dist
+node_modules
+coverage
 
-nestjs/logs
-nestjs/*.log
-nestjs/npm-debug.log*
-nestjs/pnpm-debug.log*
-nestjs/yarn-debug.log*
-nestjs/yarn-error.log*
-nestjs/lerna-debug.log*
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
 # OS
 .DS_Store
 
 # Tests
 nestj//coverage
-nestjs/.nyc_output
+.nyc_output
 
 # IDEs and editors
-nestjs/.idea
-nestjs/.project
-nestjs/.classpath
-nestjs/.c9/
-nestjs/*.launch
-nestjs/.settings/
-nestjs/*.sublime-workspace
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # IDE - VSCode
-nestjs/.vscode/*
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

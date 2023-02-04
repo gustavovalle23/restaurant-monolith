@@ -32,13 +32,17 @@ describe('FindOneOrderUseCase', () => {
 
   it('should return an order from find by id use case', async () => {
     const output = await findOneOrderUseCase.execute({ orderId: '111111111111111111111111' });
-    expect(output.customerAddress).toBeDefined()
-    expect(output.customerAddress.city).toBeDefined()
-    expect(output.customerAddress.state).toBeDefined()
-    expect(output.customerAddress.street).toBeDefined()
-    expect(output.customerAddress.zipCode).toBeDefined()
-    expect(output.customerId).toBeDefined()
-    expect(output.status).toBeDefined()
+    expect(output).toStrictEqual({
+      customerAddress: {
+        city: "Fake City",
+        state: "Fake State",
+        street: "Fake Street",
+        zipCode: "Fake Zip Code",
+      },
+      customerId: "123",
+      status: Status.PENDENT,
+    })
+
     expect(output).toStrictEqual(expectedResult)
   });
 });
