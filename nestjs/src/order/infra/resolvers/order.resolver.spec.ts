@@ -54,7 +54,7 @@ describe('orderResolver', () => {
       .spyOn(findAllOrdersUseCase, 'execute')
       .mockImplementation(() => Promise.resolve(expectedResult));
 
-    const resolverResult = await orderResolver.findAll();
+    const resolverResult = await orderResolver.findAll({ skip: 0, limit: 10 });
     expect(resolverResult).toBe(expectedResult);
   });
 

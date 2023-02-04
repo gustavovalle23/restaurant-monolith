@@ -6,6 +6,7 @@ import {
   FindOneOrderUseCase,
 } from '@/order/use-cases';
 import { CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
+import { FindAllInput } from './dto/find-order.input';
 
 @Injectable({ scope: Scope.REQUEST })
 @Resolver(() => OrderOutput)
@@ -14,7 +15,7 @@ export class OrderResolver {
     private readonly createUseCase: CreateOrderUseCase,
     private readonly findAllUseCase: FindAllOrdersUseCase,
     private readonly findOneUseCase: FindOneOrderUseCase,
-  ) {}
+  ) { }
 
   @Mutation(() => OrderOutput)
   createOrder(
@@ -24,8 +25,8 @@ export class OrderResolver {
   }
 
   @Query(() => [OrderOutput], { name: 'order' })
-  findAll(): Promise<OrderOutput[]> {
-    return this.findAllUseCase.execute();
+  findAll({ skip, limit }: FindAllInput): Promise<OrderOutput[]> {
+    return this.findAllUseCase.execute({ skip, limit });
   }
 
   @Query(() => OrderOutput, { name: 'order' })

@@ -4,6 +4,8 @@ import { FindAllOrdersUseCase } from '@/order/use-cases';
 
 describe('FindAllOrdersUseCase', () => {
   let findAllOrdersUseCase: FindAllOrdersUseCase;
+  let orderRepository: IOrderRepository;
+
   const expectedResult = [
     {
       status: Status.PENDENT,
@@ -22,12 +24,15 @@ describe('FindAllOrdersUseCase', () => {
   };
 
   beforeEach(() => {
-    const orderRepository: IOrderRepository = MockRepository();
+    orderRepository = MockRepository();
     findAllOrdersUseCase = new FindAllOrdersUseCase(orderRepository);
   });
 
   it('should return a list of orders from find all use case', async () => {
-    const result = await findAllOrdersUseCase.execute();
+    const result = await findAllOrdersUseCase.execute({ limit: 10, skip: 0 });
+    const spy = jest.spyOn(orderRepository, 'findAll')
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledWith({ limit: 10, skip: 0 })
     expect(result).toBe(expectedResult);
   });
 });
