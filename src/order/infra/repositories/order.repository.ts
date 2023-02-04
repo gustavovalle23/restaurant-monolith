@@ -1,18 +1,19 @@
-import { Address, Order } from '@/order/domain/entities';
-import { Order as OrderModel, OrderDocument } from '@/database/schemas';
+import { Address, Order, Status } from '@/order/domain/entities';
+import { Order as OrderModel } from '@/database/schemas';
 import {
   CreateOrderInput,
   IOrderRepository,
 } from '@/order/domain/repositories';
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Document, Model, Types } from 'mongoose';
 import { ObjectID } from 'bson';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class OrderRepository implements IOrderRepository {
   constructor(
-    @Inject(OrderModel.name)
-    private orderModel: Model<OrderDocument>,
+    @InjectModel('Order')
+    private orderModel: Model<OrderModel>,
   ) {}
 
   async create({
@@ -33,6 +34,10 @@ export class OrderRepository implements IOrderRepository {
     throw new Error('Method not implemented.');
   }
 
+  findByStatus(status: Status): Promise<Order[]> {
+    throw new Error('Method not implemented.');
+  }
+
   findAll(): Promise<Order[]> {
     throw new Error('Method not implemented.');
   }
@@ -42,7 +47,7 @@ export class OrderRepository implements IOrderRepository {
   }
 
   private toOrderEntity(
-    model: Document<unknown, any, OrderModel> &
+    model: Document<unknown, OrderModel> &
       OrderModel & {
         _id: Types.ObjectId;
       } & Required<{

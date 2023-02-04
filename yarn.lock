@@ -1627,6 +1627,16 @@
     tslib "2.4.0"
     uuid "8.3.2"
 
+"@nestjs/config@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-2.3.0.tgz#b54e60ad90a894b67a87b766cdbbb6d60f4d18bb"
+  integrity sha512-VSAqoIagIrc0A3apaqC2O3a8VtQ+asw8xILmxvjK/eHW9m1rmhJ5NqkGf7m+uSv3Yxini4bzyb74Mk62+tB/cA==
+  dependencies:
+    dotenv "16.0.3"
+    dotenv-expand "10.0.0"
+    lodash "4.17.21"
+    uuid "9.0.0"
+
 "@nestjs/core@^8.0.0":
   version "8.4.7"
   resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-8.4.7.tgz#fbec7fa744ac8749a4b966f759a6656c1cf43883"
@@ -3210,6 +3220,16 @@ domexception@^2.0.1:
   integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==
   dependencies:
     webidl-conversions "^5.0.0"
+
+dotenv-expand@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-10.0.0.tgz#12605d00fb0af6d0a592e6558585784032e4ef37"
+  integrity sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==
+
+dotenv@16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 ee-first@1.1.1:
   version "1.1.1"

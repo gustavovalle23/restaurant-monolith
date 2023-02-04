@@ -14,6 +14,9 @@ type Recipe {
 
 type Address {
   city: String!
+  street: String!
+  state: String!
+  zipCode: String!
 }
 
 type OrderOutput {
@@ -29,9 +32,15 @@ type Auth {
 
 type Query {
   auth(id: Int!): Auth!
+  orders(status: Status!): [OrderOutput!]!
   order(id: String!): OrderOutput!
   recipe(id: Int!): Recipe!
   reservation(id: Int!): Reservation!
+}
+
+enum Status {
+  SENT
+  PENDENT
 }
 
 type Mutation {
@@ -66,6 +75,9 @@ input CreateOrderInput {
 
 input AddressInput {
   city: String!
+  street: String!
+  state: String!
+  zipCode: String!
 }
 
 input CreateRecipeInput {

@@ -4,6 +4,7 @@ import { RecipeModule } from './recipe/recipe.module';
 import { OrderModule } from './order/order.module';
 import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
@@ -11,6 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({isGlobal: true}),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       include: [AuthModule, OrderModule, RecipeModule, ReservationModule],
       driver: ApolloDriver,
@@ -19,7 +21,12 @@ import { MongooseModule } from '@nestjs/mongoose';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
 
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGODB_URI'),
+      }),
+      inject: [ConfigService],
+    }),
     ReservationModule,
     RecipeModule,
     OrderModule,
@@ -28,4 +35,4 @@ import { MongooseModule } from '@nestjs/mongoose';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

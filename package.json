@@ -5,6 +5,11 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "config": {
+    "mongodbMemoryServer": {
+      "debug": false
+    }
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -23,6 +28,7 @@
   "dependencies": {
     "@nestjs/apollo": "^10.1.7",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.3.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^10.1.7",
     "@nestjs/mongoose": "^9.2.1",
