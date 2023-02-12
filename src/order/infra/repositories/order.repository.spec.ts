@@ -27,15 +27,14 @@ describe('OrderRepository Unit Tests', () => {
   });
 
   it('should create a new order', () => {
-    repository.create({
+    const order = repository.create({
       customerId: '123',
       status: Status.PENDENT,
       customerAddress: {
         city: 'City'
       }
     })
-
+    console.log(order)
     expect(repository).toBeDefined();
-
   });
 });

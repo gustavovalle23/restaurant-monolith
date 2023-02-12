@@ -32,8 +32,9 @@ type Auth {
 
 type Query {
   auth(id: Int!): Auth!
-  orders(status: Status!): [OrderOutput!]!
-  order(id: String!): OrderOutput!
+  findAll(skip: Float!, limit: Float!): [OrderOutput!]!
+  findOne(id: String!): OrderOutput!
+  findByStatus(status: Status!): [OrderOutput!]!
   recipe(id: Int!): Recipe!
   reservation(id: Int!): Reservation!
 }

@@ -26,19 +26,19 @@ export class OrderResolver {
     return this.createUseCase.execute(createOrderInput);
   }
 
-  @Query(() => [OrderOutput], { name: 'orders' })
-  findAll({ skip, limit }: FindAllInput): Promise<OrderOutput[]> {
+  @Query(() => [OrderOutput])
+  findAll(@Args() { skip, limit }: FindAllInput): Promise<OrderOutput[]> {
     return this.findAllUseCase.execute({ skip, limit });
   }
 
-  @Query(() => OrderOutput, { name: 'order' })
+  @Query(() => OrderOutput)
   findOne(
     @Args('id', { type: () => String }) id: string,
   ): Promise<OrderOutput> {
     return this.findOneUseCase.execute({ orderId: id });
   }
 
-  @Query(() => [OrderOutput], { name: 'orders' })
+  @Query(() => [OrderOutput])
   findByStatus(
     @Args('status', { type: () => Status }) status: Status,
   ): Promise<OrderOutput[]> {

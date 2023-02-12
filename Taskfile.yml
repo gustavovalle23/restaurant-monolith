@@ -1,6 +1,6 @@
 version: '3'
 
-dotenv: ['.env', '.env.test']
+dotenv: ['.env']
 
 vars:
   LOCAL_SERVICES: 'app mongo'
@@ -9,18 +9,21 @@ vars:
   RUN_CMD: 'docker-compose up -d {{.LOCAL_SERVICES}}'
   STOP_CMD: 'docker-compose down -v'
   TEST_CMD: 'docker-compose exec -T app yarn test'
-  BASH_CMD: 'docker exec -it app-$PROJECT_NAME sh'
+  BASH_CMD: 'docker exec -it $PROJECT_NAME sh'
   INSTALL_DEPENDENCIES_CMD: 'docker-compose run app yarn install'
   LOGS_CMD: 'docker-compose logs -f --tail=500'
   LOGS_APP_CMD: 'docker-compose logs -f --tail=500 app'
 
 tasks:
   run:
-    desc: Execute local project
+    desc: Build and Execute local project
     cmds:
       - task: build
       - '{{.RUN_CMD}}'
-
+  up:
+    desc: Execute local project
+    cmds:
+      - '{{.RUN_CMD}}'
   build:
     desc: Build container
     cmds:
