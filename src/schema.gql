@@ -25,16 +25,16 @@ type OrderOutput {
   customerAddress: Address!
 }
 
-type Auth {
+type User {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
 type Query {
-  auth(id: Int!): Auth!
+  user(id: Int!): User!
   findAll(skip: Float!, limit: Float!): [OrderOutput!]!
   findOne(id: String!): OrderOutput!
-  findByStatus(status: Status!): [OrderOutput!]!
+  findByStatus(status: OrderStatus!): [OrderOutput!]!
   recipe(id: Int!): Recipe!
   reservation(id: Int!): Reservation!
 }
@@ -45,9 +45,9 @@ enum Status {
 }
 
 type Mutation {
-  createAuth(createAuthInput: CreateAuthInput!): Auth!
-  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
-  removeAuth(id: Int!): Auth!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
   createOrder(createOrderInput: CreateOrderInput!): OrderOutput!
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
@@ -57,12 +57,12 @@ type Mutation {
   removeReservation(id: Int!): Reservation!
 }
 
-input CreateAuthInput {
+input CreateUserInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateAuthInput {
+input UpdateUserInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

@@ -2,7 +2,7 @@
   "name": "restaurant-monolith",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "useror": "",
   "private": true,
   "license": "UNLICENSED",
   "config": {
@@ -35,6 +35,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.11.1",
     "bson": "^4.7.0",
+    "class-validator": "^0.14.0",
     "graphql": "^16.6.0",
     "mongoose": "^6.8.2",
     "reflect-metadata": "^0.1.13",

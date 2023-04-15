@@ -1,11 +1,12 @@
-import { AppModule } from "@/app.module";
-import { INestApplication } from "@nestjs/common"
-import { Test, TestingModule } from "@nestjs/testing";
-import request = require("supertest");
+import { AppModule } from '@/app.module';
+import { INestApplication } from '@nestjs/common'
+import { Test, TestingModule } from '@nestjs/testing';
+import * as request from 'supertest'
 
 
 describe('Order (e2e) Tests', () => {
     let app: INestApplication;
+
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -20,7 +21,7 @@ describe('Order (e2e) Tests', () => {
         await app.close()
     })
 
-    const gql = "/graphql";
+    const gql = '/graphql'
 
     describe('Create Order', () => {
         it('Should create an order when correct params', () => {

@@ -1,4 +1,4 @@
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
@@ -22,7 +22,7 @@ export class Address {
 @Schema()
 export class Order {
   @Prop()
-  status: Status;
+  status: OrderStatus;
 
   @Prop()
   customerId: string;
