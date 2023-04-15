@@ -1,4 +1,4 @@
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { FindOrdersByStatusUseCase } from '@/order/use-cases';
 
@@ -8,7 +8,7 @@ describe('FindOrdersByStatusUseCase', () => {
 
   const expectedResult = [
     {
-      status: Status.PENDENT,
+      status: OrderStatus.PENDING,
       customerId: '123',
       customerAddress: { city: 'Ribeirão Preto' },
     },
@@ -30,10 +30,10 @@ describe('FindOrdersByStatusUseCase', () => {
   });
 
   it('should return a list of orders of specific status use case', async () => {
-    const result = await findOrdersByStatusUseCase.execute({ status: Status.PENDENT });
+    const result = await findOrdersByStatusUseCase.execute({ status: OrderStatus.PENDING });
     const spy = jest.spyOn(orderRepository, 'findByStatus')
     expect(spy).toHaveBeenCalledTimes(1)
-    expect(spy).toHaveBeenCalledWith(Status.PENDENT)
+    expect(spy).toHaveBeenCalledWith(OrderStatus.PENDING)
     expect(result).toBe(expectedResult);
   });
 });

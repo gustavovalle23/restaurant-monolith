@@ -24,6 +24,27 @@ export class User extends Entity<UserProperties> {
     User.validate(props);
   }
 
+  deactivate(): void {
+    this.props.active = false;
+    this.props.updatedAt = new Date();
+    User.validate(this.props)
+
+    User.validate(this.props)
+  }
+
+  updateEmail(email: string): void {
+    this.props.email = email;
+    this.props.updatedAt = new Date();
+
+    User.validate(this.props)
+  }
+
+  updatePhone(phone: string): void {
+    this.props.phone = phone;
+    this.props.updatedAt = new Date();
+
+    User.validate(this.props)
+  }
 
   static validate(props: UserProperties) {
     const validator = UserValidatorFactory.create();
@@ -32,6 +53,4 @@ export class User extends Entity<UserProperties> {
       throw new EntityValidationError(validator.errors);
     }
   }
-
-
 }

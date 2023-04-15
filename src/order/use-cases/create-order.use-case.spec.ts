@@ -1,5 +1,5 @@
 import { IOrderRepository } from '@/order/domain/repositories';
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { CreateOrderUseCase } from '@/order/use-cases';
 
 describe('CreateOrderUseCase', () => {
@@ -7,7 +7,7 @@ describe('CreateOrderUseCase', () => {
   let orderRepository: IOrderRepository;
 
   const expectedResult = {
-    status: Status.PENDENT,
+    status: OrderStatus.PENDING,
     customerId: '123',
     customerAddress: { city: 'Ribeirão Preto' },
   };
@@ -44,7 +44,7 @@ describe('CreateOrderUseCase', () => {
       props: {
         id: expect.any(String),
         customerId: '123',
-        status: Status.PENDENT,
+        status: OrderStatus.PENDING,
         customerAddress: {
           props: {
             city: 'Fake City',

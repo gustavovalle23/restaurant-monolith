@@ -1,4 +1,4 @@
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
@@ -18,8 +18,8 @@ export class AddressInput {
 
 @InputType()
 export class CreateOrderInput {
-  @Field({ defaultValue: Status.PENDENT, nullable: true })
-  status?: Status;
+  @Field({ defaultValue: OrderStatus.PENDING, nullable: true })
+  status?: OrderStatus;
 
   @Field()
   customerId: string;

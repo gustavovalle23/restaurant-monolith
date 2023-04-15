@@ -1,55 +1,63 @@
-import { ObjectID } from 'bson';
-import { Address } from './address.ov';
+import { Address } from './address.vo';
+import { User } from '@/user/domain/entities';
+import { Entity, UniqueEntityId } from '@/@seedwork';
+import { OrderItem } from './order-item.vo';
 
-export enum Status {
-  SENT = 'SENT',
-  PENDENT = 'PENDENT',
+
+export enum OrderStatus {
+  PENDING = 'pending',
+  PREPARING = 'preparing',
+  DELIVERING = 'delivering',
+  DELIVERED = 'delivered',
+  CANCELED = 'canceled',
 }
 
-type OrderProps = {
+
+type OrderProperties = {
   id?: string;
-  status: Status;
-  customerId: string;
-  customerAddress: Address;
+  user: User;
+  status: OrderStatus;
+  items: OrderItem[];
+  updatedAt: Date;
+  deliveredAt?: Date;
+  canceledAt?: Date;
+  deliveryAddress: Address;
 };
 
-export class Order {
-  constructor(private props: OrderProps) {
-    this.id = this.props.id ?? new ObjectID().toString();
-    this.status = this.props.status;
-    this.customerId = this.props.customerId;
-    this.customerAddress = this.props.customerAddress;
+export class Order extends Entity<OrderProperties>{
+  constructor(public props: OrderProperties, id?: UniqueEntityId) {
+    super(props, id);
+
+    this.props.status = this.props.status === undefined ? OrderStatus.PENDING : this.props.status;
   }
 
-  get id() {
-    return this.props.id;
+  prepare(): void {
+    if (this.props.status !== OrderStatus.PENDING) {
+      throw new Error(`Cannot prepare order with status ${this.props.status}`);
+    }
+
+    this.props.status = OrderStatus.PREPARING;
+    this.props.updatedAt = new Date();
   }
 
-  private set id(value: string) {
-    this.props.id = value;
+  deliver(): void {
+    if (this.props.status !== OrderStatus.PREPARING && this.props.status !== OrderStatus.DELIVERING) {
+      throw new Error(`Cannot deliver order with status ${this.props.status}`);
+    }
+
+    this.props.status = OrderStatus.DELIVERED;
+    this.props.deliveredAt = new Date();
+    this.props.updatedAt = this.props.deliveredAt;
   }
 
-  get customerId() {
-    return this.props.customerId;
+  cancel(): void {
+    if (this.props.status !== OrderStatus.PENDING && this.props.status !== OrderStatus.PREPARING) {
+      throw new Error(`Cannot cancel order with status ${this.props.status}`);
+    }
+
+    this.props.status = OrderStatus.CANCELED;
+    this.props.canceledAt = new Date();
+    this.props.updatedAt = this.props.canceledAt;
   }
 
-  private set customerId(value: string) {
-    this.props.customerId = value;
-  }
-
-  get status() {
-    return this.props.status;
-  }
-
-  private set status(value: Status) {
-    this.props.status = value;
-  }
-
-  get customerAddress() {
-    return this.props.customerAddress;
-  }
-
-  private set customerAddress(value: Address) {
-    this.props.customerAddress = value;
-  }
 }

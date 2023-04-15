@@ -1,11 +1,11 @@
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { FindOneOrderUseCase } from '@/order/use-cases';
 
 describe('FindOneOrderUseCase', () => {
   let findOneOrderUseCase: FindOneOrderUseCase;
   const expectedResult = {
-    status: Status.PENDENT,
+    status: OrderStatus.PENDING,
     customerId: '123',
     customerAddress: {
       city: 'Fake City',
@@ -40,7 +40,7 @@ describe('FindOneOrderUseCase', () => {
         zipCode: "Fake Zip Code",
       },
       customerId: "123",
-      status: Status.PENDENT,
+      status: OrderStatus.PENDING,
     })
 
     expect(output).toStrictEqual(expectedResult)

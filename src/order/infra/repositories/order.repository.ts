@@ -1,4 +1,4 @@
-import { Address, Order, Status } from '@/order/domain/entities';
+import { Address, Order, OrderStatus } from '@/order/domain/entities';
 import { Order as OrderModel } from '@/database/schemas';
 import {
   CreateOrderInput,
@@ -13,7 +13,7 @@ import { InjectModel } from '@nestjs/mongoose';
 export class OrderRepository implements IOrderRepository {
   constructor(
     @InjectModel('Order')
-    private orderModel: Model<OrderModel>,
+    private readonly orderModel: Model<OrderModel>,
   ) {}
 
   async create({
@@ -34,7 +34,7 @@ export class OrderRepository implements IOrderRepository {
     throw new Error('Method not implemented.');
   }
 
-  findByStatus(status: Status): Promise<Order[]> {
+  findByStatus(status: OrderStatus): Promise<Order[]> {
     throw new Error('Method not implemented.');
   }
 
@@ -54,7 +54,7 @@ export class OrderRepository implements IOrderRepository {
         _id: Types.ObjectId;
       }>,
   ): Order {
-    const customerAddress = new Address({
+    const deliveryAddress = new Address({
       city: model.address.city,
       state: model.address.state,
       street: model.address.street,
@@ -63,8 +63,10 @@ export class OrderRepository implements IOrderRepository {
     return new Order({
       id: model._id.toString(),
       status: model.status,
-      customerId: model.customerId,
-      customerAddress,
+      items: [],
+      updatedAt: null,
+      user: null,
+      deliveryAddress,
     });
   }
 }

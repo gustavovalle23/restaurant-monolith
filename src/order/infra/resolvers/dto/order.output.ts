@@ -1,7 +1,7 @@
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
 
-registerEnumType(Status, { name: 'Status' });
+registerEnumType(OrderStatus, { name: 'Status' });
 
 @ObjectType()
 export class Address {
@@ -21,7 +21,7 @@ export class Address {
 @ObjectType()
 export class OrderOutput {
   @Field()
-  status: Status;
+  status: OrderStatus;
 
   @Field()
   customerId: string;

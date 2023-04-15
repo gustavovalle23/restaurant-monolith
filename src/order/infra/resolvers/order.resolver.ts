@@ -7,7 +7,7 @@ import {
   FindOrdersByStatusUseCase,
 } from '@/order/use-cases';
 import { FindAllInput, CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 
 @Injectable({ scope: Scope.REQUEST })
 @Resolver(() => OrderOutput)
@@ -40,7 +40,7 @@ export class OrderResolver {
 
   @Query(() => [OrderOutput])
   findByStatus(
-    @Args('status', { type: () => Status }) status: Status,
+    @Args('status', { type: () => OrderStatus }) status: OrderStatus,
   ): Promise<OrderOutput[]> {
     return this.findOrdersByStatusUseCase.execute({ status });
   }

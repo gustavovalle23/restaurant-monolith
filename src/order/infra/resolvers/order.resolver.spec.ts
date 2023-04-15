@@ -5,7 +5,7 @@ import {
   FindOneOrderUseCase,
   FindOrdersByStatusUseCase,
 } from '@/order/use-cases';
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { OrderResolver } from './order.resolver';
 
@@ -34,7 +34,7 @@ describe('orderResolver', () => {
   it('should return a list of all orders', async () => {
     const expectedResult = [
       {
-        status: Status.PENDENT,
+        status: OrderStatus.PENDING,
         customerId: '123',
         customerAddress: {
           city: 'Ribeirão Preto',
@@ -44,7 +44,7 @@ describe('orderResolver', () => {
         },
       },
       {
-        status: Status.PENDENT,
+        status: OrderStatus.PENDING,
         customerId: '123',
         customerAddress: {
           city: 'Ribeirão Preto',
@@ -64,7 +64,7 @@ describe('orderResolver', () => {
 
   it('should return a created order', async () => {
     const expectedResult = new OrderOutput({
-      status: Status.PENDENT,
+      status: OrderStatus.PENDING,
       customerId: '123',
       customerAddress: {
         city: 'Ribeirão Preto',
@@ -93,7 +93,7 @@ describe('orderResolver', () => {
   it('should return a found order', async () => {
     const expectedResult = {
       customerId: '123',
-      status: Status.PENDENT,
+      status: OrderStatus.PENDING,
       customerAddress: {
         city: 'Ribeirão Preto',
         street: 'Random Street',

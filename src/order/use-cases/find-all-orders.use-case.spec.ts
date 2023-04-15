@@ -1,4 +1,4 @@
-import { Status } from '@/order/domain/entities';
+import { OrderStatus } from '@/order/domain/entities';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { FindAllOrdersUseCase } from '@/order/use-cases';
 
@@ -8,7 +8,7 @@ describe('FindAllOrdersUseCase', () => {
 
   const expectedResult = [
     {
-      status: Status.PENDENT,
+      status: OrderStatus.PENDING,
       customerId: '123',
       customerAddress: { city: 'Ribeirão Preto' },
     },
