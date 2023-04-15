@@ -1,7 +1,7 @@
-import { Entity, UniqueEntityId } from '@/@seedwork';
-import { CPF } from './value-objects';
-import { EntityValidationError } from '@/@seedwork/src/domain/errors/validation-error';
+import { Entity, EntityValidationError, UniqueEntityId } from '@/@seedwork';
 import { UserValidatorFactory } from '../validators/user-validator';
+import { CPF } from './cpf';
+import { EmailUpdater, PhoneUpdater } from '../updaters';
 
 export type UserProperties = {
   name: string
@@ -9,11 +9,11 @@ export type UserProperties = {
   active: boolean
   password: string
   cpf: CPF
+  email?: string
+  phone?: string
   updatedAt: Date
   deletedAt?: Date
   createdAt: Date
-  email?: string
-  phone?: string
 }
 
 export class User extends Entity<UserProperties> {
@@ -21,29 +21,33 @@ export class User extends Entity<UserProperties> {
     super(props, id);
     this.props.active =
       this.props.active === undefined ? true : this.props.active;
-    User.validate(props);
+
+    User.validate(this.props)
   }
 
   deactivate(): void {
     this.props.active = false;
     this.props.updatedAt = new Date();
-    User.validate(this.props)
 
-    User.validate(this.props)
+    this.validate()
   }
 
   updateEmail(email: string): void {
-    this.props.email = email;
-    this.props.updatedAt = new Date();
-
-    User.validate(this.props)
+    const updater = new EmailUpdater();
+    updater.update(this.props, email, this);
   }
 
   updatePhone(phone: string): void {
-    this.props.phone = phone;
-    this.props.updatedAt = new Date();
+    const updater = new PhoneUpdater();
+    updater.update(this.props, phone, this);
+  }
 
-    User.validate(this.props)
+  validate() {
+    const validator = UserValidatorFactory.create();
+    const isValid = validator.validate(this.props);
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
   }
 
   static validate(props: UserProperties) {

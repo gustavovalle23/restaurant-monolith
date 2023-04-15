@@ -1,2 +1,3 @@
 export * from './user'
-export * from './value-objects'
+export * from './cpf'
+export * from './email'

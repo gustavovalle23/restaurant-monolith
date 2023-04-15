@@ -1,16 +1,16 @@
-export class CPF {
-  private readonly value: string;
+import { ValueObject } from '@/@seedwork';
 
-  constructor(value: string) {
-    if (!CPF.validate(value)) {
+type CPFProperties = {
+  cpf: string
+}
+
+export class CPF extends ValueObject<CPFProperties> {
+  constructor(props: CPFProperties) {
+    super(props);
+
+    if (!CPF.validate(this.value.cpf)) {
       throw new Error('Invalid CPF');
     }
-
-    this.value = value;
-  }
-
-  toString(): string {
-    return this.value;
   }
 
   static validate(value: string): boolean {

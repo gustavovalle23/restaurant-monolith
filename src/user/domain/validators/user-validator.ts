@@ -1,4 +1,3 @@
-import { ClassValidatorFields } from '@/@seedwork/src/domain/validators';
 import {
   IsBoolean,
   IsDate,
@@ -7,6 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 import { UserProperties } from '../entities';
+import { ClassValidatorFields } from '@/@seedwork';
 
 export class UserRules {
   @IsString()
