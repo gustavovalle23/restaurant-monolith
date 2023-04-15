@@ -40,6 +40,7 @@ export class Order extends Entity<OrderProperties>{
 
     this.props.status = OrderStatus.PREPARING;
     this.props.updatedAt = new Date();
+    this.validate();
   }
 
   deliver(): void {
@@ -50,6 +51,7 @@ export class Order extends Entity<OrderProperties>{
     this.props.status = OrderStatus.DELIVERED;
     this.props.deliveredAt = new Date();
     this.props.updatedAt = this.props.deliveredAt;
+    this.validate();
   }
 
   cancel(): void {
@@ -60,8 +62,12 @@ export class Order extends Entity<OrderProperties>{
     this.props.status = OrderStatus.CANCELED;
     this.props.canceledAt = new Date();
     this.props.updatedAt = this.props.canceledAt;
+    this.validate();
   }
 
+  getTotalValue(): number {
+    return this.props.items.reduce((total, item) => total + item.total, 0);
+  }
 
   validate() {
     const validator = OrderValidatorFactory.create();
@@ -70,5 +76,4 @@ export class Order extends Entity<OrderProperties>{
       throw new EntityValidationError(validator.errors);
     }
   }
-
 }
