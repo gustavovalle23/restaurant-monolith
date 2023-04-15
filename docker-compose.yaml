@@ -1,38 +1,28 @@
-version: '3.5'
-
+version: '3'
 services:
   app:
-    hostname: 'restaurant-monolith'
-    container_name: 'restaurant-monolith'
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-    build:
-      dockerfile: Dockerfile
-      context: .
     networks:
-      - local-network
-    env_file:
-      - .env
-    extra_hosts:
-      - 'host.docker.internal:172.17.0.1'
+      - app_network
+    depends_on:
+      - mongo
+
   mongo:
-    ports:
-      - "27047:27017"
-    volumes:
-      - 'mongodb-volume:/data/db'
-    hostname: 'mongo-restaurant-monolith'
-    container_name: 'mongo-restaurant-monolith'
-    image: 'mongo:4.2.3'
+    image: mongo:4.4.4
+    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: test
       MONGO_INITDB_ROOT_PASSWORD: test
+    ports:
+      - "27017:27017"
     networks:
-      - local-network
+      - app_network
+
 networks:
-  local-network:
-    name: network-restaurant-monolith
-volumes:
-  mongodb-volume:
-    driver: local
+  app_network:

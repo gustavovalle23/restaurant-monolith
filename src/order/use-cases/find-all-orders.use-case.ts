@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { IOrderRepository } from '@/order/domain/repositories';
 import { OrderStatus } from '@/order/domain/entities';
 import { User } from '@/user/domain/entities';
-import DefaultUseCase from '@/@seedwork/src/application/use-case';
+import { DefaultUseCase } from '@/@seedwork';
 
 @Injectable()
 export class FindAllOrdersUseCase implements DefaultUseCase<Input, Output> {

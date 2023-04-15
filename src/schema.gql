@@ -26,22 +26,38 @@ type OrderOutput {
 }
 
 type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  birthDate: DateTime!
+  active: Boolean!
+  password: String!
+  cpf: String!
+  email: String
+  phone: String
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  createdAt: DateTime!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Query {
   user(id: Int!): User!
   findAll(skip: Float!, limit: Float!): [OrderOutput!]!
   findOne(id: String!): OrderOutput!
-  findByStatus(status: OrderStatus!): [OrderOutput!]!
+  findByStatus(status: Status!): [OrderOutput!]!
   recipe(id: Int!): Recipe!
   reservation(id: Int!): Reservation!
 }
 
 enum Status {
-  SENT
-  PENDENT
+  PENDING
+  PREPARING
+  DELIVERING
+  DELIVERED
+  CANCELED
 }
 
 type Mutation {
@@ -69,7 +85,7 @@ input UpdateUserInput {
 }
 
 input CreateOrderInput {
-  status: String = "PENDENT"
+  status: String = "pending"
   customerId: String!
   customerAddress: AddressInput!
 }

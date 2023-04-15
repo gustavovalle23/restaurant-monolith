@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
-import { databaseProviders } from './database.provider';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  providers: [...databaseProviders],
-  exports: [...databaseProviders],
+  imports: [
+    MongooseModule.forRoot('mongodb://test:test@mongo:27017/admin?authMechanism=DEFAULT', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
+  ],
 })
 export class DatabaseModule {}

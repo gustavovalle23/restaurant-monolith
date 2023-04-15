@@ -9,7 +9,7 @@ vars:
   RUN_CMD: 'docker-compose up -d {{.LOCAL_SERVICES}}'
   STOP_CMD: 'docker-compose down -v'
   TEST_CMD: 'docker-compose exec -T app yarn test'
-  BASH_CMD: 'docker exec -it $PROJECT_NAME sh'
+  BASH_CMD: 'docker exec -it restaurant-monolith_app_1 sh'
   INSTALL_DEPENDENCIES_CMD: 'docker-compose run app yarn install'
   LOGS_CMD: 'docker-compose logs -f --tail=500'
   LOGS_APP_CMD: 'docker-compose logs -f --tail=500 app'
