@@ -1,0 +1,3 @@
+[submodule "src/seedwork-clean-arch"]
+	path = src/seedwork-clean-arch
+	url = git@github.com:gustavovalle23/seedwork-clean-arch.git
