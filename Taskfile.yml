@@ -20,14 +20,23 @@ tasks:
     cmds:
       - task: build
       - '{{.RUN_CMD}}'
+
   up:
     desc: Execute local project
     cmds:
       - '{{.RUN_CMD}}'
+
   build:
     desc: Build container
     cmds:
       - '{{.BUILD_CMD}}'
+
+  git:
+    desc: Get submodules
+    cmds:
+      - git submodule sync
+      - git submodule init
+      - git submodule update --recursive --remote
 
   install:
     desc: Install dependencies

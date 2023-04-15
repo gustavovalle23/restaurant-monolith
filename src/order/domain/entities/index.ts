@@ -1,3 +1,3 @@
 export * from './address.vo';
-export * from './order.entity';
+export * from './order';
 export * from './order-item.vo';

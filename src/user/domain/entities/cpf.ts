@@ -1,4 +1,5 @@
 import { ValueObject } from '@/@seedwork';
+import { InvalidCpfError } from '../errors';
 
 type CPFProperties = {
   cpf: string
@@ -8,12 +9,12 @@ export class CPF extends ValueObject<CPFProperties> {
   constructor(props: CPFProperties) {
     super(props);
 
-    if (!CPF.validate(this.value.cpf)) {
-      throw new Error('Invalid CPF');
+    if (!CPF.isValid(this.value.cpf)) {
+      throw new InvalidCpfError(this.value.cpf);
     }
   }
 
-  static validate(value: string): boolean {
+  static isValid(value: string): boolean {
     if (value.length !== 11 || !/^\d{11}$/.test(value)) {
       return false;
     }

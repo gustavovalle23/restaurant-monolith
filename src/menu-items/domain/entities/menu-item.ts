@@ -24,6 +24,8 @@ type MenuItemProperties = {
 export class MenuItem extends Entity<MenuItemProperties> {
   constructor(props: MenuItemProperties, id?: UniqueEntityId) {
     super(props, id);
+
+    this.validate()
   }
 
   get isAvailable(): boolean {
@@ -38,5 +40,9 @@ export class MenuItem extends Entity<MenuItemProperties> {
   updatePrice(price: number): void {
     this.props.price = price;
     this.props.updatedAt = new Date();
+  }
+
+  validate(): void {
+    throw new Error('Method not implemented.');
   }
 }

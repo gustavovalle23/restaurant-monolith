@@ -1,6 +1,6 @@
 import { ValueObject } from '@/@seedwork';
 
-type OrderItemProperties = {
+export type OrderItemProperties = {
     name: string;
     observation: string;
     price: number;
@@ -21,7 +21,3 @@ export class OrderItem extends ValueObject<OrderItemProperties> {
         this.props.quantity = quantity;
     }
 }
-
-
-
-

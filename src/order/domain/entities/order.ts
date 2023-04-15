@@ -1,7 +1,8 @@
 import { Address } from './address.vo';
 import { User } from '@/user/domain/entities';
-import { Entity, UniqueEntityId } from '@/@seedwork';
+import { Entity, EntityValidationError, UniqueEntityId } from '@/@seedwork';
 import { OrderItem } from './order-item.vo';
+import { OrderValidatorFactory } from '../validators/order-validator';
 
 
 export enum OrderStatus {
@@ -12,8 +13,7 @@ export enum OrderStatus {
   CANCELED = 'canceled',
 }
 
-
-type OrderProperties = {
+export type OrderProperties = {
   id?: string;
   user: User;
   status: OrderStatus;
@@ -24,11 +24,13 @@ type OrderProperties = {
   deliveryAddress: Address;
 };
 
+
 export class Order extends Entity<OrderProperties>{
   constructor(public props: OrderProperties, id?: UniqueEntityId) {
     super(props, id);
 
     this.props.status = this.props.status === undefined ? OrderStatus.PENDING : this.props.status;
+    this.validate()
   }
 
   prepare(): void {
@@ -58,6 +60,15 @@ export class Order extends Entity<OrderProperties>{
     this.props.status = OrderStatus.CANCELED;
     this.props.canceledAt = new Date();
     this.props.updatedAt = this.props.canceledAt;
+  }
+
+
+  validate() {
+    const validator = OrderValidatorFactory.create();
+    const isValid = validator.validate(this.props);
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
   }
 
 }
