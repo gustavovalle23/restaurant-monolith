@@ -14,6 +14,7 @@ export class CPF extends ValueObject<CPFProperties> {
     }
   }
 
+
   static isValid(value: string): boolean {
     if (value.length !== 11 || !/^\d{11}$/.test(value)) {
       return false;
