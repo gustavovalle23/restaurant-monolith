@@ -37,6 +37,7 @@ export class CreateUserUseCase implements DefaultUseCase<CreateUserInput, Create
 
 export type CreateUserInput = { birthDate: Date, cpf: string, name: string, password: string };
 export type CreateUserOutput = {
+  id: string;
   cpf: string;
   name: string;
   active: boolean;

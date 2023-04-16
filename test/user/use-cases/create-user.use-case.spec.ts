@@ -20,7 +20,7 @@ describe('CreateUserUseCase', () => {
   it('should create a user', async () => {
     const input: CreateUserInput = {
       birthDate: new Date(),
-      cpf: '123.456.789-10',
+      cpf: '21195002076',
       name: 'John Doe',
       password: 'password123',
     };
@@ -35,6 +35,7 @@ describe('CreateUserUseCase', () => {
       birthDate: input.birthDate,
     });
     const expectedOutput: CreateUserOutput = {
+      id: expect.any(String),
       cpf: user.props.cpf.value.cpf,
       name: user.props.name,
       active: user.props.active,

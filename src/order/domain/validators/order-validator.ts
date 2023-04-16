@@ -10,7 +10,7 @@ export class OrderRules {
   @IsNotEmpty()
   user: User;
 
-  @IsEnum(OrderStatus)
+  // @IsEnum(OrderStatus)
   status: OrderStatus;
 
   @IsArray()

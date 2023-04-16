@@ -17,7 +17,7 @@ export class UserRules {
   @IsNotEmpty()
   name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   email: string;
 
@@ -32,7 +32,7 @@ export class UserRules {
   birthDate: Date;
 
   @IsDate()
-  createdAT: Date;
+  createdAt: Date;
 
   @IsDate()
   @IsOptional()
@@ -60,12 +60,12 @@ export class UserRules {
       birthDate,
       active,
       password,
-      cpf,
       updatedAt,
       deletedAt,
       createdAt,
       email,
       phone,
+      cpf: cpf.value.cpf,
     });
   }
 }
