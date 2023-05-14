@@ -74,13 +74,21 @@ type Mutation {
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  birthDate: DateTime!
+  password: String!
+  cpf: String!
+  email: String!
+  phone: String!
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  name: String
+  birthDate: DateTime
+  password: String
+  cpf: String
+  email: String
+  phone: String
   id: Int!
 }
 

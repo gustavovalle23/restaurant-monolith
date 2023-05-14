@@ -4,7 +4,7 @@ export abstract class IUSerRepository {
   abstract create(input: CreateUserInput): Promise<User>;
 }
 
-export type CreateUserInput = {
+type CreateUserInput = {
     cpf: string;
     name: string;
     active: boolean;

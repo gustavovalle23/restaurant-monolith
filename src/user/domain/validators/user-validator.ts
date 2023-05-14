@@ -1,9 +1,11 @@
 import {
   IsBoolean,
   IsDate,
+  IsEmail,
   IsNotEmpty,
   IsOptional,
   IsString,
+  Min,
 } from 'class-validator';
 import { UserProperties } from '../entities';
 import { ClassValidatorFields } from '@/@seedwork';
@@ -18,6 +20,7 @@ export class UserRules {
   name: string;
 
   @IsOptional()
+  @IsEmail({}, { message: 'must be a valid email' })
   @IsString()
   email: string;
 
@@ -26,9 +29,10 @@ export class UserRules {
 
   @IsString()
   @IsNotEmpty()
+  @Min(6)
   password: string;
 
-  @IsDate()
+  @IsDate({message: 'Invalid birth date'})
   birthDate: Date;
 
   @IsDate()

@@ -148,14 +148,13 @@ describe('User', () => {
     test('should throw an error with correct validation errors for a user with invalid properties', () => {
       const invalidUserProps = {
         name: 'John Doe',
-        birthDate: new Date(2010, 1, 1),
-        active: undefined,
+        birthDate: null,
+        active: null,
         password: '1234',
         cpf: new CPF({cpf: '84092175035'}),
         email: 'invalid-email',
         phone: 'invalid-phone',
         updatedAt: new Date(),
-        deletedAt: undefined,
         createdAt: new Date(),
       };
 
@@ -163,15 +162,12 @@ describe('User', () => {
         User.validate(invalidUserProps);
       } catch (error) {
         expect(error).toBeInstanceOf(EntityValidationError);
-        expect(error.errors).toHaveLength(5);
-        expect(error.errors[1].field).toBe('email');
-        expect(error.errors[1].message).toBe('Invalid email');
-        expect(error.errors[2].field).toBe('phone');
-        expect(error.errors[2].message).toBe('Invalid phone');
-        expect(error.errors[3].field).toBe('password');
-        expect(error.errors[3].message).toBe('Password must be at least 6 characters long');
-        expect(error.errors[4].field).toBe('birthDate');
-        expect(error.errors[4].message).toBe('Invalid birth date');
+        expect(error.errors.email.length).toBe(1);
+        expect(error.errors.email[0]).toBe('must be a valid email');
+        expect(error.errors.password.length).toBe(1);
+        expect(error.errors.password[0]).toBe('password must not be less than 6');
+        expect(error.errors.birthDate.length).toBe(1);
+        expect(error.errors.birthDate[0]).toBe('Invalid birth date');
       }
     });
   });

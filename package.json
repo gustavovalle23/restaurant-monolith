@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "useror": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "private": false,
+  "license": "MIT",
   "config": {
     "mongodbMemoryServer": {
       "debug": false
