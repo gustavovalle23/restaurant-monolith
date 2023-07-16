@@ -126,3 +126,7 @@ input UpdateReservationInput {
   exampleField: Int
   id: Int!
 }
+
+type Subscription {
+  statusUpdated: OrderOutput!
+}

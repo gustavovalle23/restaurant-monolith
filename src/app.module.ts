@@ -14,11 +14,14 @@ import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal: true}),
+    ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       include: [UserModule, OrderModule, RecipeModule, ReservationModule],
       driver: ApolloDriver,
+      subscriptions: {
+        "graphql-ws": true
+      },
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],

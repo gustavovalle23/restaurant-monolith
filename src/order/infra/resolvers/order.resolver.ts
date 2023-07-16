@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
 import { Injectable, Scope } from '@nestjs/common';
 import {
   CreateOrderUseCase,
@@ -8,8 +8,11 @@ import {
 } from '@/order/use-cases';
 import { FindAllInput, CreateOrderInput, OrderOutput } from '@/order/infra/resolvers/dto';
 import { OrderStatus } from '@/order/domain/entities';
+import { PubSub } from 'graphql-subscriptions';
 
-@Injectable({ scope: Scope.REQUEST })
+const pubSub = new PubSub()
+
+@Injectable()
 @Resolver(() => OrderOutput)
 export class OrderResolver {
   constructor(
@@ -36,6 +39,11 @@ export class OrderResolver {
     @Args('id', { type: () => String }) id: string,
   ): Promise<OrderOutput> {
     return this.findOneUseCase.execute({ orderId: id });
+  }
+
+  @Subscription(() => OrderOutput)
+  statusUpdated() {
+    return pubSub.asyncIterator('statusUpdated')
   }
 
   @Query(() => [OrderOutput])
